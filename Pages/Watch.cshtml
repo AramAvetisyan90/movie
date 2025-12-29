@@ -1,0 +1,27 @@
+@page
+@model WatchModel
+@{
+    ViewData["Title"] = Model.Movie?.Title;
+    ViewData["HideFooter"] = true; // Optional: hide footer on player page if desired, logic would need to be in Layout
+}
+
+<div class="watch-container">
+    <div class="back-link">
+        <a asp-page="/Index">&larr; Back to Browse</a>
+    </div>
+
+    @if (Model.Movie != null)
+    {
+        <div class="video-wrapper">
+             <video controls autoplay class="video-player" poster="@Model.Movie.PosterUrl">
+                <source src="@Model.Movie.VideoUrl" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="movie-details">
+            <h1 class="watch-title">@Model.Movie.Title <span class="watch-year">(@Model.Movie.ReleaseYear)</span></h1>
+            <p class="watch-desc">@Model.Movie.Description</p>
+        </div>
+    }
+</div>

@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+  --bg-color: #141414;
+  --text-color: #ffffff;
+  --primary-color: #e50914;
+  --card-bg: #1f1f1f;
+  --font-main: 'Inter', sans-serif;
+  --spacing-unit: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  /* Ensure no horizontal scroll */
+}
+
+/* Header / Navbar */
+.navbar {
+  background-color: transparent !important;
+  padding: 1.5rem 4%;
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  left: 0;
+  /* Ensure it starts at edge */
+}
+
+.brand-logo {
+  color: var(--primary-color);
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+/* Hero Section */
+.hero-section {
+  height: 80vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), var(--bg-color)), url('https://assets.nflxext.com/ffe/siteui/vlv3/f841d4c7-10e1-40af-bcae-07a3f8dc141a/f6d7434e-d6de-4185-a6d4-c77a2d08737b/US-en-20220502-popsignuptwoweeks-perspective_alpha_website_large.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  padding: 0 4%;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+/* Movie Grid */
+.movie-container {
+  padding: 2rem 4%;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #e5e5e5;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.movie-card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  aspect-ratio: 2/3;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.movie-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Movie Info Overlay */
+.movie-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.movie-card:hover .movie-info {
+  opacity: 1;
+}
+
+.movie-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.movie-year {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-bottom: 0.5rem;
+}
+
+.movie-desc {
+  font-size: 0.8rem;
+  color: #ddd;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Footer */
+footer {
+  padding: 2rem 4%;
+  text-align: center;
+  color: #737373;
+  font-size: 0.9rem;
+  margin-top: 4rem;
+}
+
+/* Watch Page */
+.watch-container {
+  padding: 6rem 4% 2rem;
+  /* Add top padding for navbar */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.back-link a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 1.1rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+  transition: color 0.2s;
+}
+
+.back-link a:hover {
+  color: white;
+}
+
+.video-wrapper {
+  width: 100%;
+  background: #000;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  padding-top: 56.25%;
+  /* 16:9 Aspect Ratio */
+}
+
+.video-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.watch-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.watch-year {
+  font-size: 1.5rem;
+  color: #888;
+  font-weight: 400;
+}
+
+.watch-desc {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ddd;
+  max-width: 800px;
+}

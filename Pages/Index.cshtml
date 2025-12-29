@@ -1,0 +1,31 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">Unlimited movies, TV shows, and more</h1>
+        <p class="hero-subtitle">Watch anywhere. Cancel anytime.</p>
+    </div>
+</div>
+
+<div class="movie-container">
+    <h2 class="section-title">Trending Now</h2>
+    <div class="movie-grid">
+        @foreach (var movie in Model.Movies)
+        {
+            <a asp-page="/Watch" asp-route-id="@movie.Id" style="text-decoration: none; color: inherit;">
+                <div class="movie-card">
+                    <img src="@movie.PosterUrl" alt="@movie.Title" class="movie-poster" />
+                    <div class="movie-info">
+                        <h3 class="movie-title">@movie.Title</h3>
+                        <span class="movie-year">@movie.ReleaseYear</span>
+                        <p class="movie-desc">@movie.Description</p>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+</div>
