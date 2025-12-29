@@ -55,4 +55,4 @@ nunit-*.xml
 
 wwwroot/videos/
 wwwroot/posters/
-.vs
+.vs/
