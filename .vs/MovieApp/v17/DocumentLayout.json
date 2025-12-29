@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0E149A65-E246-4C4B-9815-E5FA049F6F79}|MovieApp.csproj|c:\\users\\aveti\\onedrive\\desktop\\github\\movie\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0E149A65-E246-4C4B-9815-E5FA049F6F79}|MovieApp.csproj|solutionrelative:pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0E149A65-E246-4C4B-9815-E5FA049F6F79}|MovieApp.csproj|c:\\users\\aveti\\onedrive\\desktop\\github\\movie\\services\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0E149A65-E246-4C4B-9815-E5FA049F6F79}|MovieApp.csproj|solutionrelative:services\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E149A65-E246-4C4B-9815-E5FA049F6F79}|MovieApp.csproj|c:\\users\\aveti\\onedrive\\desktop\\github\\movie\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0E149A65-E246-4C4B-9815-E5FA049F6F79}|MovieApp.csproj|solutionrelative:pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0E149A65-E246-4C4B-9815-E5FA049F6F79}|MovieApp.csproj|c:\\users\\aveti\\onedrive\\desktop\\github\\movie\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -66,7 +66,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,7 +74,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Pages\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Pages\\Shared\\_Layout.cshtml",
@@ -84,18 +84,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-12-29T11:36:29.21Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MovieApp.csproj",
-              "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\MovieApp.csproj",
-              "RelativeDocumentMoniker": "MovieApp.csproj",
-              "ToolTip": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\MovieApp.csproj",
-              "RelativeToolTip": "MovieApp.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-12-29T09:32:42.102Z"
             },
             {
               "$type": "Document",
@@ -206,15 +194,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MovieService.cs",
               "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Services\\MovieService.cs",
               "RelativeDocumentMoniker": "Services\\MovieService.cs",
               "ToolTip": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Services\\MovieService.cs",
               "RelativeToolTip": "Services\\MovieService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAowGcAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-29T08:25:09.352Z"
+              "WhenOpened": "2025-12-29T08:25:09.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MovieApp.csproj",
+              "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\MovieApp.csproj",
+              "RelativeDocumentMoniker": "MovieApp.csproj",
+              "ToolTip": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\MovieApp.csproj",
+              "RelativeToolTip": "MovieApp.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-12-29T09:32:42.102Z"
             },
             {
               "$type": "Document",
