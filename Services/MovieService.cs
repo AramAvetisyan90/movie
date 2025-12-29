@@ -9,9 +9,9 @@ namespace MovieApp.Services
             return GetMovies().FirstOrDefault(m => m.Id == id);
         }
 
-        public List<Movie> GetMovies()
+        public List<Movie> GetMovies(string? searchString = null)
         {
-            return new List<Movie>
+            var movies = new List<Movie>
             {
                 new Movie 
                 { 
@@ -59,6 +59,13 @@ namespace MovieApp.Services
                     VideoUrl = "/videos/Posledniy_viking_2025_720.mp4"
                 }
             };
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(m => m.Title.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+            }
+
+            return movies;
         }
     }
 }

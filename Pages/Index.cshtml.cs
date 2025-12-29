@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MovieApp.Models;
 using MovieApp.Services;
@@ -9,6 +10,9 @@ namespace MovieApp.Pages
         private readonly ILogger<IndexModel> _logger;
         private readonly MovieService _movieService;
 
+        [BindProperty(SupportsGet = true)]
+        public string? SearchString { get; set; }
+
         public List<Movie> Movies { get; set; } = new();
 
         public IndexModel(ILogger<IndexModel> logger, MovieService movieService)
@@ -19,7 +23,7 @@ namespace MovieApp.Pages
 
         public void OnGet()
         {
-            Movies = _movieService.GetMovies();
+            Movies = _movieService.GetMovies(SearchString);
         }
     }
 }

@@ -11,12 +11,19 @@
     </div>
 </div>
 
+<div class="search-container">
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search movies..." class="search-input" />
+        <button type="button" class="search-button">Search</button>
+    </div>
+</div>
+
 <div class="movie-container">
     <h2 class="section-title">Trending Now</h2>
-    <div class="movie-grid">
+    <div class="movie-grid" id="movieGrid">
         @foreach (var movie in Model.Movies)
         {
-            <a asp-page="/Watch" asp-route-id="@movie.Id" style="text-decoration: none; color: inherit;">
+            <a asp-page="/Watch" asp-route-id="@movie.Id" class="movie-link" style="text-decoration: none; color: inherit;">
                 <div class="movie-card">
                     <img src="@movie.PosterUrl" alt="@movie.Title" class="movie-poster" />
                     <div class="movie-info">
@@ -29,3 +36,19 @@
         }
     </div>
 </div>
+
+<script>
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        let filter = this.value.toLowerCase();
+        let movies = document.querySelectorAll('.movie-link');
+
+        movies.forEach(function(movie) {
+            let title = movie.querySelector('.movie-title').textContent.toLowerCase();
+            if (title.includes(filter)) {
+                movie.style.display = '';
+            } else {
+                movie.style.display = 'none';
+            }
+        });
+    });
+</script>
