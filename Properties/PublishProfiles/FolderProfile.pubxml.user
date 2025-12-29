@@ -4,8 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>C:\Users\aveti\OneDrive\Desktop\Movies\bin\Release\net8.0\publish\</_PublishTargetUrl>
-    <History>False|2025-12-29T12:04:57.4988617Z||;True|2025-12-29T13:37:19.7819643+04:00||;</History>
+    <_PublishTargetUrl>C:\Users\aveti\OneDrive\Desktop\GITHUB\movie\bin\Release\net8.0\publish\</_PublishTargetUrl>
+    <History>True|2025-12-29T12:21:02.4411393Z||;False|2025-12-29T16:04:57.4988617+04:00||;True|2025-12-29T13:37:19.7819643+04:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>
