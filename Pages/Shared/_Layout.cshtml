@@ -3,7 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie App</title>
+    <title>@ViewData["Title"] - Movie App</title>
+    <meta name="description" content="@(ViewData["Description"] ?? "Watch unlimited movies and TV shows online. Best film show experience.")" />
+    <meta name="keywords" content="@(ViewData["Keywords"] ?? "movies, film show, watch online, tv shows, streaming")" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="@ViewData["Title"] - Movie App">
+    <meta property="og:description" content="@(ViewData["Description"] ?? "Watch unlimited movies and TV shows online. Best film show experience.")">
+    <meta property="og:site_name" content="Movie App">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>

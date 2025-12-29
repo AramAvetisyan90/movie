@@ -1,8 +1,24 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Film Show - Watch Movies Online";
+    ViewData["Description"] = "The best film show experience. Watch unlimited movies and TV shows online. High quality streaming of your favorite films.";
+    ViewData["Keywords"] = "film show, movies, watch online, streaming, tv shows, best movies";
 }
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Movie App",
+  "url": "https://www.example.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.example.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 
 <div class="hero-section">
     <div class="hero-content">
