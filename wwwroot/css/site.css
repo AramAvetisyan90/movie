@@ -3,7 +3,8 @@
 :root {
   --bg-color: #141414;
   --text-color: #ffffff;
-  --primary-color: #e50914;
+  --primary-color: #8A2BE2;
+  /* Royal Violet */
   --card-bg: #1f1f1f;
   --font-main: 'Inter', sans-serif;
   --spacing-unit: 1rem;
@@ -44,6 +45,7 @@ body {
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
 }
 
 /* Hero Section */
@@ -266,7 +268,7 @@ footer {
 }
 
 .search-button:hover {
-  background-color: #f40612;
+  background-color: #9D46F0;
 }
 
 @media (max-width: 768px) {
