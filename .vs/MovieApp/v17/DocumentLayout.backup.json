@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0E149A65-E246-4C4B-9815-E5FA049F6F79}|MovieApp.csproj|c:\\users\\aveti\\onedrive\\desktop\\github\\movie\\services\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E149A65-E246-4C4B-9815-E5FA049F6F79}|MovieApp.csproj|solutionrelative:services\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0E149A65-E246-4C4B-9815-E5FA049F6F79}|MovieApp.csproj|c:\\users\\aveti\\onedrive\\desktop\\github\\movie\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0E149A65-E246-4C4B-9815-E5FA049F6F79}|MovieApp.csproj|solutionrelative:pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -49,10 +53,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0E149A65-E246-4C4B-9815-E5FA049F6F79}|MovieApp.csproj|c:\\users\\aveti\\onedrive\\desktop\\github\\movie\\pages\\error.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0E149A65-E246-4C4B-9815-E5FA049F6F79}|MovieApp.csproj|solutionrelative:pages\\error.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0E149A65-E246-4C4B-9815-E5FA049F6F79}|MovieApp.csproj|c:\\users\\aveti\\onedrive\\desktop\\github\\movie\\services\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0E149A65-E246-4C4B-9815-E5FA049F6F79}|MovieApp.csproj|solutionrelative:services\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -70,19 +70,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Dockerfile",
-              "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Dockerfile",
-              "RelativeDocumentMoniker": "Dockerfile",
-              "ToolTip": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Dockerfile",
-              "RelativeToolTip": "Dockerfile",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-12-29T09:33:53.267Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "MovieApp.csproj",
               "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\MovieApp.csproj",
               "RelativeDocumentMoniker": "MovieApp.csproj",
@@ -94,7 +82,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "MovieApp",
               "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\MovieApp.csproj",
               "RelativeDocumentMoniker": "MovieApp.csproj",
@@ -105,7 +93,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -117,7 +105,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Watch.cshtml",
               "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Pages\\Watch.cshtml",
               "RelativeDocumentMoniker": "Pages\\Watch.cshtml",
@@ -129,7 +117,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Error.cshtml",
               "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Pages\\Error.cshtml",
               "RelativeDocumentMoniker": "Pages\\Error.cshtml",
@@ -141,7 +129,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Pages\\Index.cshtml",
               "RelativeDocumentMoniker": "Pages\\Index.cshtml",
@@ -153,7 +141,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Watch.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Pages\\Watch.cshtml.cs",
               "RelativeDocumentMoniker": "Pages\\Watch.cshtml.cs",
@@ -165,7 +153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -177,7 +165,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Privacy.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Pages\\Privacy.cshtml.cs",
               "RelativeDocumentMoniker": "Pages\\Privacy.cshtml.cs",
@@ -189,20 +177,45 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Index.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Pages\\Index.cshtml.cs",
               "RelativeDocumentMoniker": "Pages\\Index.cshtml.cs",
               "ToolTip": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Pages\\Index.cshtml.cs",
               "RelativeToolTip": "Pages\\Index.cshtml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-29T08:37:44.115Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 0,
+              "Title": "MovieService.cs",
+              "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Services\\MovieService.cs",
+              "RelativeDocumentMoniker": "Services\\MovieService.cs",
+              "ToolTip": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Services\\MovieService.cs",
+              "RelativeToolTip": "Services\\MovieService.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAQwF4AAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T08:25:09.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Dockerfile",
+              "RelativeDocumentMoniker": "Dockerfile",
+              "ToolTip": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Dockerfile",
+              "RelativeToolTip": "Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-29T09:33:53.267Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "Error.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Pages\\Error.cshtml.cs",
               "RelativeDocumentMoniker": "Pages\\Error.cshtml.cs",
@@ -211,18 +224,6 @@
               "ViewState": "AgIAAAQAAAAAAAAAAAAAAAQAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-29T08:37:42.506Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "MovieService.cs",
-              "DocumentMoniker": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Services\\MovieService.cs",
-              "RelativeDocumentMoniker": "Services\\MovieService.cs",
-              "ToolTip": "C:\\Users\\aveti\\OneDrive\\Desktop\\GITHUB\\movie\\Services\\MovieService.cs",
-              "RelativeToolTip": "Services\\MovieService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-29T08:25:09.352Z"
             }
           ]
         }
