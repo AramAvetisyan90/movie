@@ -45,7 +45,8 @@
     <div class="movie-grid" id="movieGrid">
         @foreach (var movie in Model.Movies)
         {
-            <a asp-page="/Watch" asp-route-id="@movie.Id" class="movie-link" data-genre="@movie.Genre" style="text-decoration: none; color: inherit;">
+            var movieSlug = Model.Library.GetSlug(movie.Title);
+            <a asp-page="/Watch" asp-route-title="@movieSlug" class="movie-link" data-genre="@movie.Genre" style="text-decoration: none; color: inherit;">
                 <div class="movie-card">
                     <img src="@movie.PosterUrl" alt="@movie.Title" class="movie-poster" />
                     <div class="movie-info">
@@ -132,7 +133,7 @@
                 const genreBadges = genres.map(g => `<span class="movie-genre-badge">${g.trim()}</span>`).join('');
 
                 const movieHtml = `
-                    <a href="/Watch?id=${movie.id}" class="movie-link" data-genre="${movie.genre}" style="text-decoration: none; color: inherit;">
+                    <a href="/Watch/${encodeURIComponent(movie.slug)}" class="movie-link" data-genre="${movie.genre}" style="text-decoration: none; color: inherit;">
                         <div class="movie-card">
                             <img src="${movie.posterUrl}" alt="${movie.title}" class="movie-poster" />
                             <div class="movie-info">

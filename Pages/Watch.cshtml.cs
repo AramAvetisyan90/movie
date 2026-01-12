@@ -20,9 +20,12 @@ namespace MovieApp.Pages
             _configuration = configuration;
         }
 
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet(string title)
         {
-            Movie = _movieService.GetMovie(id);
+            if (string.IsNullOrEmpty(title)) return RedirectToPage("/Index");
+            
+            Movie = _movieService.GetMovieByTitle(title);
+            
             if (Movie == null)
             {
                 return RedirectToPage("/Index");
