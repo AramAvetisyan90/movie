@@ -20,12 +20,17 @@
         </div>
 
         <div class="movie-details">
-            <h1 class="watch-title">@Model.Movie.Title <span class="watch-year">(@Model.Movie.ReleaseYear)</span></h1>
+            <h1 class="watch-title">@Model.Movie.Title</h1>
             <div class="watch-meta">
+                <span class="watch-year">@Model.Movie.ReleaseYear</span>
                 @foreach (var g in Model.Movie.Genre.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
                 {
                     <span class="genre-tag">@g</span>
                 }
+            </div>
+            <div class="watch-sub-meta">
+                @if (!string.IsNullOrEmpty(Model.Movie.Country)) { <span class="watch-meta-item">Страна: @Model.Movie.Country</span> }
+                @if (!string.IsNullOrEmpty(Model.Movie.Duration)) { <span class="watch-meta-item">Длительность: @Model.Movie.Duration</span> }
             </div>
             <p class="watch-desc">@Model.Movie.Description</p>
         </div>

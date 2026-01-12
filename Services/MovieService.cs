@@ -51,7 +51,7 @@ namespace MovieApp.Services
             return text;
         }
 
-        public List<Movie> GetMovies(string? searchString = null, string? genre = null, int skip = 0, int take = 100)
+        public List<Movie> GetMovies(string? searchString = null, string? genre = null, string? country = null, int? year = null, int skip = 0, int take = 100)
         {
             var movies = new List<Movie>();
             var basePath = _configuration["MediaSettings:BasePath"] ?? "/var/www/MovieData";
@@ -86,15 +86,47 @@ namespace MovieApp.Services
                 );
             }
 
+            if (!string.IsNullOrEmpty(country))
+            {
+                query = query.Where(m => 
+                    !string.IsNullOrEmpty(m.Country) && 
+                    m.Country.Split(',', StringSplitOptions.TrimEntries)
+                           .Contains(country, StringComparer.OrdinalIgnoreCase)
+                );
+            }
+
+            if (year.HasValue && year > 0)
+            {
+                query = query.Where(m => m.ReleaseYear == year.Value);
+            }
+
             return query.Skip(skip).Take(take).ToList();
         }
 
         public List<string> GetGenres()
         {
-            var movies = GetMovies();
+            var movies = GetMovies(take: int.MaxValue);
             return movies.SelectMany(m => m.Genre.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
                          .Distinct()
                          .OrderBy(g => g)
+                         .ToList();
+        }
+
+        public List<string> GetCountries()
+        {
+            var movies = GetMovies(take: int.MaxValue);
+            return movies.SelectMany(m => m.Country.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+                         .Distinct()
+                         .OrderBy(c => c)
+                         .ToList();
+        }
+
+        public List<int> GetYears()
+        {
+            var movies = GetMovies(take: int.MaxValue);
+            return movies.Select(m => m.ReleaseYear)
+                         .Distinct()
+                         .OrderByDescending(y => y)
                          .ToList();
         }
     }

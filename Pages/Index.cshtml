@@ -37,6 +37,21 @@
                 <option value="@genre">@genre</option>
             }
         </select>
+        <select id="countryFilter" class="genre-select">
+            <option value="">Все страны</option>
+            @foreach (var country in Model.AvailableCountries)
+            {
+                <option value="@country">@country</option>
+            }
+        </select>
+        <select id="yearFilter" class="genre-select">
+            <option value="">Все годы</option>
+            @foreach (var year in Model.AvailableYears)
+            {
+                <option value="@year">@year</option>
+            }
+        </select>
+        <button type="button" onclick="resetFilters()" class="clear-filters-btn">Сбросить</button>
     </div>
 </div>
 
@@ -59,6 +74,10 @@
                                     <span class="movie-genre-badge">@g</span>
                                 }
                             </div>
+                        </div>
+                        <div class="movie-sub-meta">
+                            @if (!string.IsNullOrEmpty(movie.Country)) { <span class="meta-item">@movie.Country</span> }
+                            @if (!string.IsNullOrEmpty(movie.Duration)) { <span class="meta-item">@movie.Duration</span> }
                         </div>
                         <p class="movie-desc">@movie.Description</p>
                     </div>
@@ -90,6 +109,18 @@
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
+    .movie-sub-meta {
+        font-size: 0.8rem;
+        color: #aaa;
+        margin-bottom: 8px;
+        display: flex;
+        gap: 10px;
+    }
+    .meta-item {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1px 6px;
+        border-radius: 3px;
+    }
 </style>
 
 <script>
@@ -103,6 +134,8 @@
     const loadingUI = document.getElementById('loading');
     const searchInput = document.getElementById('searchInput');
     const genreFilter = document.getElementById('genreFilter');
+    const countryFilter = document.getElementById('countryFilter');
+    const yearFilter = document.getElementById('yearFilter');
 
     async function loadMovies(reset = false) {
         if (isLoading || (!hasMore && !reset)) return;
@@ -118,9 +151,11 @@
 
         const searchTerm = searchInput.value;
         const selectedGenre = genreFilter.value;
+        const selectedCountry = countryFilter.value;
+        const selectedYear = yearFilter.value;
         
         try {
-            const url = `?handler=MoreMovies&skip=${currentSkip}&search=${encodeURIComponent(searchTerm)}&genre=${encodeURIComponent(selectedGenre)}`;
+            const url = `?handler=MoreMovies&skip=${currentSkip}&search=${encodeURIComponent(searchTerm)}&genre=${encodeURIComponent(selectedGenre)}&country=${encodeURIComponent(selectedCountry)}&year=${encodeURIComponent(selectedYear)}`;
             const response = await fetch(url);
             const movies = await response.json();
 
@@ -131,6 +166,9 @@
             movies.forEach(movie => {
                 const genres = movie.genre.split(',').filter(g => g.trim() !== '');
                 const genreBadges = genres.map(g => `<span class="movie-genre-badge">${g.trim()}</span>`).join('');
+                
+                const countryHtml = movie.country ? `<span class="meta-item">${movie.country}</span>` : '';
+                const durationHtml = movie.duration ? `<span class="meta-item">${movie.duration}</span>` : '';
 
                 const movieHtml = `
                     <a href="/Watch/${encodeURIComponent(movie.slug)}" class="movie-link" data-genre="${movie.genre}" style="text-decoration: none; color: inherit;">
@@ -141,6 +179,10 @@
                                 <div class="movie-meta">
                                     <span class="movie-year">${movie.releaseYear}</span>
                                     <div class="genre-badges">${genreBadges}</div>
+                                </div>
+                                <div class="movie-sub-meta">
+                                    ${countryHtml}
+                                    ${durationHtml}
                                 </div>
                                 <p class="movie-desc">${movie.description}</p>
                             </div>
@@ -174,4 +216,14 @@
     });
 
     genreFilter.addEventListener('change', () => loadMovies(true));
+    countryFilter.addEventListener('change', () => loadMovies(true));
+    yearFilter.addEventListener('change', () => loadMovies(true));
+
+    function resetFilters() {
+        searchInput.value = '';
+        genreFilter.selectedIndex = 0;
+        countryFilter.selectedIndex = 0;
+        yearFilter.selectedIndex = 0;
+        loadMovies(true);
+    }
 </script>
