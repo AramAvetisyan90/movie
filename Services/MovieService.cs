@@ -19,42 +19,51 @@ namespace MovieApp.Services
             return GetMovies().FirstOrDefault(m => m.Id == id);
         }
 
-        public List<Movie> GetMovies(string? searchString = null)
+        public List<Movie> GetMovies(string? searchString = null, string? genre = null, int skip = 0, int take = 100)
         {
             var movies = new List<Movie>();
             var basePath = _configuration["MediaSettings:BasePath"] ?? "/var/www/MovieData";
             var jsonPath = Path.Combine(basePath, "movies.json");
-            
-            // Log for debugging
-            Console.WriteLine($"[MovieService] Looking for movies.json at: {jsonPath}");
-            Console.WriteLine($"[MovieService] File exists: {File.Exists(jsonPath)}");
             
             if (File.Exists(jsonPath))
             {
                 try
                 {
                     var json = File.ReadAllText(jsonPath);
-                    Console.WriteLine($"[MovieService] JSON content length: {json.Length} characters");
-                    movies = JsonSerializer.Deserialize<List<Movie>>(json) ?? new List<Movie>();
-                    Console.WriteLine($"[MovieService] Loaded {movies.Count} movies");
+                    movies = JsonSerializer.Deserialize<List<Movie>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<Movie>();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"[MovieService] Error loading movies: {ex.Message}");
                 }
             }
-            else
-            {
-                Console.WriteLine($"[MovieService] movies.json not found at {jsonPath}");
-                Console.WriteLine($"[MovieService] Current directory: {Directory.GetCurrentDirectory()}");
-            }
+
+            var query = movies.AsEnumerable();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                movies = movies.Where(m => m.Title.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                query = query.Where(m => m.Title.Contains(searchString, StringComparison.OrdinalIgnoreCase));
             }
 
-            return movies;
+            if (!string.IsNullOrEmpty(genre) && genre != "All")
+            {
+                query = query.Where(m => 
+                    !string.IsNullOrEmpty(m.Genre) && 
+                    m.Genre.Split(',', StringSplitOptions.TrimEntries)
+                           .Contains(genre, StringComparer.OrdinalIgnoreCase)
+                );
+            }
+
+            return query.Skip(skip).Take(take).ToList();
+        }
+
+        public List<string> GetGenres()
+        {
+            var movies = GetMovies();
+            return movies.SelectMany(m => m.Genre.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+                         .Distinct()
+                         .OrderBy(g => g)
+                         .ToList();
         }
     }
 }

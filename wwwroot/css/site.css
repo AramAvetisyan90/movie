@@ -156,6 +156,7 @@ body {
   color: #ddd;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 1.4;
@@ -276,4 +277,64 @@ footer {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
+}
+
+/* Genre Filter & Tags */
+.genre-select {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.genre-select:hover {
+  border-color: var(--primary-color);
+}
+
+.genre-select option {
+  background: var(--bg-color);
+  color: white;
+}
+
+.movie-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.genre-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+.movie-genre-badge {
+  font-size: 0.75rem;
+  background: rgba(138, 43, 226, 0.2);
+  padding: 2px 8px;
+  border-radius: 12px;
+  color: #e0b0ff;
+  border: 1px solid rgba(138, 43, 226, 0.3);
+}
+
+.watch-meta {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.genre-tag {
+  background: var(--primary-color);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
 }

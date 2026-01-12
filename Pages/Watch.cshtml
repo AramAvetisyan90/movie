@@ -7,7 +7,7 @@
 
 <div class="watch-container">
     <div class="back-link">
-        <a asp-page="/Index">&larr; Back to Browse</a>
+        <a asp-page="/Index">&larr; Назад к фильмам</a>
     </div>
 
     @if (Model.Movie != null)
@@ -15,12 +15,18 @@
         <div class="video-wrapper">
              <video id="moviePlayer" controls autoplay muted playsinline preload="auto" class="video-player" poster="@Model.Movie.PosterUrl">
                 <source src="@Url.Page("/Watch", "Video", new { id = Model.Movie.Id })" type="video/mp4">
-                Your browser does not support the video tag.
+                Ваш браузер не поддерживает воспроизведение видео.
             </video>
         </div>
 
         <div class="movie-details">
             <h1 class="watch-title">@Model.Movie.Title <span class="watch-year">(@Model.Movie.ReleaseYear)</span></h1>
+            <div class="watch-meta">
+                @foreach (var g in Model.Movie.Genre.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+                {
+                    <span class="genre-tag">@g</span>
+                }
+            </div>
             <p class="watch-desc">@Model.Movie.Description</p>
         </div>
     }

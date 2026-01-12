@@ -1,16 +1,16 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Film Show - Watch Movies Online";
-    ViewData["Description"] = "The best film show experience. Watch unlimited movies and TV shows online. High quality streaming of your favorite films.";
-    ViewData["Keywords"] = "film show, movies, watch online, streaming, tv shows, best movies";
+    ViewData["Title"] = "HOTFILMS - Смотрите фильмы онлайн";
+    ViewData["Description"] = "Лучший сервис для просмотра фильмов. Смотрите неограниченное количество фильмов и сериалов онлайн в высоком качестве.";
+    ViewData["Keywords"] = "фильмы, смотреть онлайн, сериалы, лучшие фильмы, кино";
 }
 
 <script type="application/ld+json">
 {
   "@@context": "https://schema.org",
   "@@type": "WebSite",
-  "name": "Movie App",
+  "name": "HOTFILMS",
   "url": "https://www.example.com/",
   "potentialAction": {
     "@@type": "SearchAction",
@@ -22,49 +22,155 @@
 
 <div class="hero-section">
     <div class="hero-content">
-        <h1 class="hero-title">Unlimited movies, TV shows, and more</h1>
-        <p class="hero-subtitle">Watch anywhere. Cancel anytime.</p>
+        <h1 class="hero-title">Безлимитные фильмы, сериалы и многое другое</h1>
+        <p class="hero-subtitle">Смотрите где угодно. Отменяйте когда хотите.</p>
     </div>
 </div>
 
 <div class="search-container">
     <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search movies..." class="search-input" />
-        <button type="button" class="search-button">Search</button>
+        <input type="text" id="searchInput" placeholder="Поиск фильмов..." class="search-input" />
+        <select id="genreFilter" class="genre-select">
+            <option value="">Все жанры</option>
+            @foreach (var genre in Model.AvailableGenres)
+            {
+                <option value="@genre">@genre</option>
+            }
+        </select>
     </div>
 </div>
 
 <div class="movie-container">
-    <h2 class="section-title">Trending Now</h2>
+    <h2 class="section-title">Популярное сейчас</h2>
     <div class="movie-grid" id="movieGrid">
         @foreach (var movie in Model.Movies)
         {
-            <a asp-page="/Watch" asp-route-id="@movie.Id" class="movie-link" style="text-decoration: none; color: inherit;">
+            <a asp-page="/Watch" asp-route-id="@movie.Id" class="movie-link" data-genre="@movie.Genre" style="text-decoration: none; color: inherit;">
                 <div class="movie-card">
                     <img src="@movie.PosterUrl" alt="@movie.Title" class="movie-poster" />
                     <div class="movie-info">
                         <h3 class="movie-title">@movie.Title</h3>
-                        <span class="movie-year">@movie.ReleaseYear</span>
+                        <div class="movie-meta">
+                            <span class="movie-year">@movie.ReleaseYear</span>
+                            <div class="genre-badges">
+                                @foreach (var g in movie.Genre.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+                                {
+                                    <span class="movie-genre-badge">@g</span>
+                                }
+                            </div>
+                        </div>
                         <p class="movie-desc">@movie.Description</p>
                     </div>
                 </div>
             </a>
         }
     </div>
+    <div id="loading" class="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+    <div id="scrollSentinel" style="height: 10px;"></div>
 </div>
 
-<script>
-    document.getElementById('searchInput').addEventListener('keyup', function() {
-        let filter = this.value.toLowerCase();
-        let movies = document.querySelectorAll('.movie-link');
+<style>
+    .loading-spinner {
+        display: flex;
+        justify-content: center;
+        padding: 2rem;
+    }
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(138, 43, 226, 0.3);
+        border-top: 4px solid var(--primary-color);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+    @@keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
 
-        movies.forEach(function(movie) {
-            let title = movie.querySelector('.movie-title').textContent.toLowerCase();
-            if (title.includes(filter)) {
-                movie.style.display = '';
-            } else {
-                movie.style.display = 'none';
+<script>
+    let currentSkip = @Model.Movies.Count;
+    const pageSize = 100;
+    let isLoading = false;
+    let hasMore = true;
+    let searchTimeout;
+
+    const movieGrid = document.getElementById('movieGrid');
+    const loadingUI = document.getElementById('loading');
+    const searchInput = document.getElementById('searchInput');
+    const genreFilter = document.getElementById('genreFilter');
+
+    async function loadMovies(reset = false) {
+        if (isLoading || (!hasMore && !reset)) return;
+        
+        isLoading = true;
+        loadingUI.style.display = 'flex';
+        
+        if (reset) {
+            currentSkip = 0;
+            hasMore = true;
+            movieGrid.innerHTML = '';
+        }
+
+        const searchTerm = searchInput.value;
+        const selectedGenre = genreFilter.value;
+        
+        try {
+            const url = `?handler=MoreMovies&skip=${currentSkip}&search=${encodeURIComponent(searchTerm)}&genre=${encodeURIComponent(selectedGenre)}`;
+            const response = await fetch(url);
+            const movies = await response.json();
+
+            if (movies.length < pageSize) {
+                hasMore = false;
             }
-        });
+
+            movies.forEach(movie => {
+                const genres = movie.genre.split(',').filter(g => g.trim() !== '');
+                const genreBadges = genres.map(g => `<span class="movie-genre-badge">${g.trim()}</span>`).join('');
+
+                const movieHtml = `
+                    <a href="/Watch?id=${movie.id}" class="movie-link" data-genre="${movie.genre}" style="text-decoration: none; color: inherit;">
+                        <div class="movie-card">
+                            <img src="${movie.posterUrl}" alt="${movie.title}" class="movie-poster" />
+                            <div class="movie-info">
+                                <h3 class="movie-title">${movie.title}</h3>
+                                <div class="movie-meta">
+                                    <span class="movie-year">${movie.releaseYear}</span>
+                                    <div class="genre-badges">${genreBadges}</div>
+                                </div>
+                                <p class="movie-desc">${movie.description}</p>
+                            </div>
+                        </div>
+                    </a>`;
+                movieGrid.insertAdjacentHTML('beforeend', movieHtml);
+            });
+
+            currentSkip += movies.length;
+        } catch (error) {
+            console.error('Error loading movies:', error);
+        } finally {
+            isLoading = false;
+            loadingUI.style.display = 'none';
+        }
+    }
+
+    // Infinite Scroll Observer
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore && !isLoading) {
+            loadMovies();
+        }
+    }, { threshold: 0.1 });
+
+    observer.observe(document.getElementById('scrollSentinel'));
+
+    // Search and Filter Listeners
+    searchInput.addEventListener('input', () => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => loadMovies(true), 500);
     });
+
+    genreFilter.addEventListener('change', () => loadMovies(true));
 </script>
