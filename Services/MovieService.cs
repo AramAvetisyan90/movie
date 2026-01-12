@@ -1,9 +1,19 @@
 ﻿using MovieApp.Models;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+using System.Text.Json;
 
 namespace MovieApp.Services
 {
     public class MovieService
     {
+        private readonly IConfiguration _configuration;
+
+        public MovieService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public Movie? GetMovie(int id)
         {
             return GetMovies().FirstOrDefault(m => m.Id == id);
@@ -11,108 +21,33 @@ namespace MovieApp.Services
 
         public List<Movie> GetMovies(string? searchString = null)
         {
-            var movies = new List<Movie>
+            var movies = new List<Movie>();
+            var basePath = _configuration["MediaSettings:BasePath"] ?? "/var/www/MovieData";
+            var jsonPath = Path.Combine(basePath, "movies.json");
+            
+            // Log for debugging
+            Console.WriteLine($"[MovieService] Looking for movies.json at: {jsonPath}");
+            Console.WriteLine($"[MovieService] File exists: {File.Exists(jsonPath)}");
+            
+            if (File.Exists(jsonPath))
             {
-                new Movie 
-                { 
-                    Id = 1, 
-                    Title = "Джо", 
-                    ReleaseYear = 2013,
-                    Description = "В сонном городке на Миссисипи встретились два одиноких человека. Юный Гари поставил крест на своем будущем, не зная, как отвязаться от отца-алкоголика. Бывший бандит Джо не желает вспоминать о прошлом. Неожиданно для самих себя они становятся друзьями.",
-                    PosterUrl = "/posters/Joe.jpg",
-                    VideoUrl = "/videos/Joe_2013_720.mp4"
-                },
-                new Movie 
-                { 
-                    Id = 2, 
-                    Title = "Время для храбрых", 
-                    ReleaseYear = 2025,
-                    Description = "Фильм является мексиканским ремейком аргентинской картины «Время смелых» (Tiempo de valientes, 2005) История рассказывает о нервном психоаналитике, который после дорожно-транспортного происшествия приговаривается к общественным работам. Его прикрепляют к полицейскому агенту, находящемуся в глубокой депрессии из-за измены жены. Вместе они оказываются втянуты в опасное расследование, связанное с вопросами национальной безопасности.",
-                    PosterUrl = "/posters/Vremya_dlya_xrabrix.jpg",
-                    VideoUrl = "/videos/Vremya_dlya_hrabryh_2025_720.mp4"
-                },
-                new Movie 
-                { 
-                    Id = 3, 
-                    Title = "Анаконда", 
-                    ReleaseYear = 2025,
-                    Description = "Группа друзей отправляется в джунгли, чтобы снять ремейк «Анаконды», их любимого фильма юности. Однако вскоре после начала съёмок змея, главная звезда фильма, погибает, и друзьям приходится продвигаться в глубь джунглей, чтобы найти ей замену.",
-                    PosterUrl = "/posters/anakonda.jpg",
-                    VideoUrl = "/videos/Anaconda_2025_720.mp4"
-                },
-                 new Movie 
-                { 
-                    Id = 4, 
-                    Title = "Вождь эльфов", 
-                    ReleaseYear = 2025,
-                    Description = "Среди глухих лесов расположен древний город Ллорис, когда-то давно созданный эльфами. Но люди изгнали их из города, и теперь Ллорисом правит деспотичный шериф, который наживается на его жителях. Он постоянно повышает налоги, обрекая людей на нищету и голод, лишая их крова и заработка. А тех, кто пытается протестовать, подвергает изгнанию и пыткам. В городе назревает восстание, и отчаявшиеся жители решают обратиться за помощью к эльфам-затворникам, веря в их магические силы. Эльфы не доверяют людям, с которыми они не общались двести лет, и хотят сохранить свой хрупкий мир.",
-                    PosterUrl = "/posters/vojd_elfov.webp",
-                    VideoUrl = "/videos/Vozhd_elfov_2025_720.mp4"
-                },
-                new Movie 
-                { 
-                    Id = 5, 
-                    Title = "Последний викинг", 
-                    ReleaseYear = 2025,
-                    Description = "Анкер выходит на свободу после 14 лет тюрьмы за ограбление. Деньги, добытые в том деле, закопал его брат Манфред — только он знает, где спрятана добыча. Но за прошедшие годы у Манфреда развилось психическое расстройство, и теперь он ничего не помнит. Вместе братья отправляются на поиски денег и общего прошлого.",
-                    PosterUrl = "/posters/posledniy_viking.jpg",
-                    VideoUrl = "/videos/Posledniy_viking_2025_720.mp4"
-                },
-                new Movie
+                try
                 {
-                    Id = 6,
-                    Title = "Сироты",
-                    ReleaseYear = 2025,
-                    Description = "Габ и Дрисc, друзья детства, рассорившиеся после ухода из приюта, живут совершенно разной жизнью: один служит в полиции, другой — криминальный авторитет. Когда их первая любовь погибает при подозрительных обстоятельствах, её 17-летняя дочь Лейла начинает расследование в отношении могущественной компании, которая пытается скрыть преступление. Вынужденные объединиться, бывшие воспитанники приюта должны остановить Лейлу, пока та не совершила непоправимое.",
-                    PosterUrl = "/posters/Siroti.jpg",
-                    VideoUrl = "/videos/Siroty_2025_720.mp4"
-                },
-                new Movie
-                {
-                    Id = 7,
-                    Title = "Всемирный потоп",
-                    ReleaseYear = 2025,
-                    Description = "Однажды планета Земля оказывается во власти природной стихии - ее накрывает глобальное, разрушительной силы наводнение. Стремительно прибывающая вода грозит уже не сегодня-завтра уничтожить весь мир, не оставляя никому даже малейшего шанса на спасение. Катастрофа в самом разгаре. В одном из многоквартирных домов в водную ловушку попадает молодая женщина с маленьким сынишкой.",
-                    PosterUrl = "/posters/vsemirni_potop.webp",
-                    VideoUrl = "/videos/Vsemirniy_potop_2025_720.mp4"
-                },
-                new Movie
-                {
-                    Id = 8,
-                    Title = "Сущность",
-                    ReleaseYear = 2025,
-                    Description = "Однажды планета Земля оказывается во власти природной стихии - ее накрывает глобальное, разрушительной силы наводнение. Стремительно прибывающая вода грозит уже не сегодня-завтра уничтожить весь мир, не оставляя никому даже малейшего шанса на спасение. Катастрофа в самом разгаре. В одном из многоквартирных домов в водную ловушку попадает молодая женщина с маленьким сынишкой.",
-                    PosterUrl = "/posters/sushnost.webp",
-                    VideoUrl = "/videos/Sushnost_2025_720.mp4"
-                },
-                new Movie
-                {
-                    Id = 9,
-                    Title = "Поймать монстра",
-                    ReleaseYear = 2025,
-                    Description = "Десятилетняя Аврора нанимает своего таинственного соседа, чтобы тот уничтожил монстра, поглотившего её семью. Подозревая, что родители девочки могли пасть жертвой киллеров, охотящихся на него самого, мужчина с чувством вины берётся за дело.",
-                    PosterUrl = "/posters/poymat_monstera.webp",
-                    VideoUrl = "/videos/Poymat_monstra_2025_720.mp4"
-                },
-                new Movie
-                {
-                    Id = 10,
-                    Title = "Игра по-крупному",
-                    ReleaseYear = 2024,
-                    Description = "18-летний Брахим — восходящая звезда футбола, который собирается подписать свой первый контракт с престижным клубом своего родного города. Но когда таинственный и влиятельный агент срывает переговоры, парень обнаруживает, что всё не так просто. Разрываясь между верностью и деньгами, Брахиму приходится участвовать в гонке со временем, чтобы решить свою судьбу.",
-                    PosterUrl = "/posters/igra_pokrupnomu.jpg",
-                    VideoUrl = "/videos/Igra_po_krupnomu_2024_720.mp4"
-                },
-                new Movie
-                {
-                    Id = 11,
-                    Title = "Сын плотника",
-                    ReleaseYear = 2025,
-                    Description = "Мрачная история семьи плотника, скрывающейся в Египте во времена Римской империи. Попав под влияние таинственного мальчика, сын восстает против своего родителя. В нем раскрывается нечеловеческая сила, и юноша устремляется навстречу своей судьбе, о которой не мог и помыслить. Вскоре герою и его семье предстоит испытать на себе настоящий ужас.",
-                    PosterUrl = "/posters/sin_plotnika.jpg",
-                    VideoUrl = "/videos/Syn_plotnika_2025_720.mp4"
+                    var json = File.ReadAllText(jsonPath);
+                    Console.WriteLine($"[MovieService] JSON content length: {json.Length} characters");
+                    movies = JsonSerializer.Deserialize<List<Movie>>(json) ?? new List<Movie>();
+                    Console.WriteLine($"[MovieService] Loaded {movies.Count} movies");
                 }
-            };
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"[MovieService] Error loading movies: {ex.Message}");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"[MovieService] movies.json not found at {jsonPath}");
+                Console.WriteLine($"[MovieService] Current directory: {Directory.GetCurrentDirectory()}");
+            }
 
             if (!string.IsNullOrEmpty(searchString))
             {

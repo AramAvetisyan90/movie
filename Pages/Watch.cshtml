@@ -13,8 +13,8 @@
     @if (Model.Movie != null)
     {
         <div class="video-wrapper">
-             <video controls autoplay class="video-player" poster="@Model.Movie.PosterUrl">
-                <source src="@Model.Movie.VideoUrl" type="video/mp4">
+             <video id="moviePlayer" controls autoplay muted playsinline preload="auto" class="video-player" poster="@Model.Movie.PosterUrl">
+                <source src="@Url.Page("/Watch", "Video", new { id = Model.Movie.Id })" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -25,3 +25,33 @@
         </div>
     }
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var video = document.getElementById('moviePlayer');
+            if (video) {
+                // When metadata (duration) is loaded
+                video.addEventListener('loadedmetadata', function() {
+                    console.log("Metadata loaded. Duration: " + video.duration);
+                    // Video duration is now known
+                });
+
+                // Error handling
+                video.addEventListener('error', function(e) {
+                    console.error("Video Error:", video.error);
+                    var source = video.querySelector('source');
+                    if (source) {
+                        console.log("Failed source URL:", source.src);
+                    }
+                });
+
+                // Browsers often require one user interaction to play with sound.
+                // We start muted to ensure it plays, and can show a 'unmute' hint.
+                video.play().catch(error => {
+                    console.log("Autoplay check:", error);
+                });
+            }
+        });
+    </script>
+}

@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\aveti\OneDrive\Desktop\GITHUB\movie\bin\Release\net8.0\publish\</_PublishTargetUrl>
-    <History>True|2025-12-29T12:21:02.4411393Z||;False|2025-12-29T16:04:57.4988617+04:00||;True|2025-12-29T13:37:19.7819643+04:00||;</History>
+    <History>True|2025-12-30T19:07:06.7440483Z||;True|2025-12-30T23:03:01.0519422+04:00||;True|2025-12-30T22:54:23.5926890+04:00||;True|2025-12-30T22:40:51.4539883+04:00||;True|2025-12-30T22:04:18.8887430+04:00||;True|2025-12-29T17:34:19.5597587+04:00||;True|2025-12-29T17:33:55.8411298+04:00||;True|2025-12-29T17:12:47.8592096+04:00||;True|2025-12-29T17:12:31.0213562+04:00||;True|2025-12-29T16:21:02.4411393+04:00||;False|2025-12-29T16:04:57.4988617+04:00||;True|2025-12-29T13:37:19.7819643+04:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>
